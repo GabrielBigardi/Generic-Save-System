@@ -6,13 +6,13 @@
 ## Functions
 ```cs
 // Save data by giving a Save-File name and a serializable class
-public static bool SaveGame<T>(string saveName, T serializableObject)
+public static bool SaveGame<T>(string saveName, T serializableObject);
 
 // Load data by giving a Save-File name
-public static bool LoadGame<T>(string loadName)
+public static bool LoadGame<T>(string loadName);
 
 // Load data by giving a Save-FileName and a out variable with the type of your serializable class
-public static bool LoadGame<T>(string loadName, out T serializableObject)
+public static bool LoadGame<T>(string loadName, out T serializableObject);
 ```  
   
 ## Events
