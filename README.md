@@ -34,4 +34,4 @@ That's as easy as [clicking here](DOCUMENTATION.md)
 **Email**: *gabrielbigardi@hotmail.com*  
   
 ## References
-[Vicot](https://github.com/vicot) for the 1.1.0 suggestion and helping the project.
+[Vicot](https://github.com/vicot) for the 1.1.0 suggestions and helping the project.
