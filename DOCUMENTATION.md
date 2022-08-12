@@ -2,6 +2,7 @@
 * 1 - Add the namespace to your code: "using GBD.SaveSystem;"  
 * 2 - Create your save data class/classes (it can be anything as long as it's serializable).  
 * 3 - Save your game by using SaveSystem.SaveGame<T>("OutputFileName") and load it by using SaveSystem.LoadGame<T>("InputFileName") or SaveSystem.LoadGame("InputFileName", out T serializableObject).  
+* 4 - For security purposes you need to change the secret key in the save system, it supports any 128-bit hex key, you can generate one at https://www.allkeysgenerator.com/Random/Security-Encryption-Key-Generator.aspx  
   
 ## Functions
 ```cs
@@ -26,6 +27,12 @@ public static event Action<string> GameDataLoaded;
   
 ### Example usage
 ```cs
+// EXAMPLE - Custom Secrets Static Class
+public static class GameSecrets
+{
+	public const string SAVE_SECRET_KEY = "b14ca5898a4e4133bbce2ea2315a1916";
+}
+
 // EXAMPLE - Save Data
 public class Inventory
 {
@@ -42,12 +49,12 @@ public class PlayerInventoryHandler : MonoBehaviour
 {
 	private void Start()
 	{
-		SaveSystem.LoadGame<Inventory>("Inventory");
+		SaveSystem.LoadGame<Inventory>("Inventory", GameSecrets.SAVE_SECRET_KEY);
 	}
 	
 	private void OnApplicationQuit()
 	{
-		SaveSystem.SaveGame("Inventory", new Inventory(1337));
+		SaveSystem.SaveGame("Inventory", new Inventory(1337), GameSecrets.SAVE_SECRET_KEY);
 	}
 }
 
@@ -57,9 +64,9 @@ public class UIInventoryHandler : MonoBehaviour
 	public void OnEnable => SaveSystem.GameDataLoaded += OnGameDataLoaded;
 	public void OnDisable => SaveSystem.GameDataLoaded -= OnGameDataLoaded;
 	
-	public void OnGameDataLoaded(string loadedJson)
+	public void OnGameDataLoaded(object loadedObject)
 	{
-		var loadedData = JsonUtility.FromJson<Inventory>(loadedJson);
+		var loadedData = loadedObject as Inventory;
 		PlayerInventory = loadedData.PlayerInventory;
 	}
 }
