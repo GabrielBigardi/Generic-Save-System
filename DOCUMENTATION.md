@@ -2,7 +2,7 @@
 * 1 - Add the namespace to your code: "using GBD.SaveSystem;"  
 * 2 - Create your save data class/classes (it can be anything as long as it's serializable).  
 * 3 - Save your game by using SaveSystem.SaveGame<T>("OutputFileName") and load it by using SaveSystem.LoadGame<T>("InputFileName") or SaveSystem.LoadGame("InputFileName", out T serializableObject).  
-* 4 - For security purposes you need to change the secret key in the save system, it supports any 128-bit hex key, you can generate one at https://www.allkeysgenerator.com/Random/Security-Encryption-Key-Generator.aspx  
+* 4 - For security purposes you need to change the secret key in the save system, it supports any 128-bit hex key, you can generate one by clicking [HERE](https://asecuritysite.com/principles/plain)  
   
 ## Functions
 ```cs
